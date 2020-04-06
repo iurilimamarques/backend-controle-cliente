@@ -6,7 +6,9 @@
 package com.controlecliente.project.repository;
 
 import com.controlecliente.project.models.Cliente;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
@@ -14,5 +16,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ClienteRepository extends JpaRepository<Cliente, Long>{
     Cliente findById(long id);
-
+    
+    @Query(value = "SELECT * FROM ATIVIDADE s WHERE s.id_usuario = ?1", 
+			  nativeQuery = true)
+			List<Cliente> getClientesByUsuario(int id_usuario);
 }

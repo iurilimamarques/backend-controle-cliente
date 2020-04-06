@@ -10,11 +10,6 @@ import com.controlecliente.project.repository.UsuarioRepository;
 import com.google.gson.Gson;
 import io.swagger.annotations.Api;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.json.JSONArray;
-import org.json.JSONException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
