@@ -6,6 +6,7 @@
 package com.controlecliente.project.repository;
 
 import com.controlecliente.project.models.Cliente;
+import com.controlecliente.project.models.Endereco;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,14 +15,14 @@ import org.springframework.data.jpa.repository.Query;
  *
  * @author iuri
  */
-public interface ClienteRepository extends JpaRepository<Cliente, Long>{
-    Cliente findById(long id);
+public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
+    Endereco findById(long id);
     
-    @Query(value = "SELECT * FROM CLIENTE s WHERE s.id_usuario = ?1 AND s.cpf_cnpj= ?2", 
+    @Query(value = "SELECT * FROM ENDERECO s WHERE s.id_cliente = ?1 AND s.status='P'", 
 			  nativeQuery = true)
-			List<Cliente> getClienteByCpf(int id_usuario, String cpf_cnpj);
+			Endereco getPrincipalByCliente(int id_cliente);
                         
-    @Query(value = "SELECT * FROM CLIENTE s WHERE s.id_usuario = ?1", 
-			  nativeQuery = true)
-			List<Cliente> getClientesByUsuario(int id_usuario);
+    @Query(value = "SELECT * FROM ENDERECO s WHERE s.id_cliente = ?1 AND status!='D'", 
+      nativeQuery = true)
+    List<Endereco> getByCliente(int id_cliente);
 }

@@ -50,7 +50,7 @@ public class Usuario implements Serializable{
     private String expires_in;
     
     public Usuario(String nome, String senha, String email,
-                     List<Cliente> cliente, String access_token, String token_type, String refresh_token) {
+                     List<Cliente> cliente, String access_token, String token_type, String refresh_token, String expires_in) {
             super();
             this.nome = nome;
             this.senha = senha;

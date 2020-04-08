@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.CascadeType;
 
 /**
  *
@@ -23,7 +24,9 @@ import javax.persistence.Table;
 @Table(name="TELEFONE")
 public class Telefone implements Serializable{
     
-    @ManyToOne
+    private static final long serialVersionUID = 1L;
+    
+    @ManyToOne /*(cascade = CascadeType.PERSIST)*/
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
     
@@ -36,6 +39,10 @@ public class Telefone implements Serializable{
     public Telefone(Cliente cliente, String numero) {
         this.cliente = cliente;
         this.numero = numero;
+    }
+    
+    public Telefone() {
+   
     }
 
     public Cliente getCliente() {

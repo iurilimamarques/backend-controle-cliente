@@ -3,31 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.controlecliente.project.models;
+package com.controlecliente.project.DTO;
 
 import com.controlecliente.project.models.Cliente;
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 /**
  *
  * @author iuri
  */
-@Entity
-@Table(name="ENDERECO")
-public class Endereco implements Serializable{
-    
-    private static final long serialVersionUID = 1L;
-    
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private long id;
+public class EnderecoRequest implements Serializable{
     
     private String rua;
     
@@ -43,33 +28,7 @@ public class Endereco implements Serializable{
     
     private String status;
     
-    @ManyToOne
-    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
-    
-    public Endereco(String rua, int numero, String bairro, String cidade, String pais, String status, String estado, Cliente cliente) {
-        super();
-        this.rua = rua;
-        this.numero = numero;
-        this.bairro = bairro;
-        this.cidade = cidade;            
-        this.pais = pais;
-        this.status = status;            
-        this.estado = estado;
-        this.cliente = cliente;
-    }
-    
-    public Endereco() {
-            
-    }
-    
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
 
     public String getStatus() {
         return status;
@@ -77,14 +36,6 @@ public class Endereco implements Serializable{
 
     public void setStatus(String status) {
         this.status = status;
-    }
-    
-    public long getId() {
-        return id;
-    }
-    
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getRua() {
@@ -101,6 +52,14 @@ public class Endereco implements Serializable{
 
     public void setNumero(int numero) {
         this.numero = numero;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getBairro() {
@@ -126,5 +85,14 @@ public class Endereco implements Serializable{
     public void setPais(String pais) {
         this.pais = pais;
     }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+    
     
 }

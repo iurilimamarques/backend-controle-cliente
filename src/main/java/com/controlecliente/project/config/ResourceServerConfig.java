@@ -5,8 +5,6 @@
  */
 package com.controlecliente.project.config;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Properties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -33,13 +31,7 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter{
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        /*http.authorizeRequests()
-            .antMatchers(HttpMethod.POST, "/oauth/token").permitAll()
-            .anyRequest().authenticated();*/
         
-        http.csrf().disable()
-                .requestMatchers().antMatchers("/login", "/oauth/authorize", "/oauth/token", "/user/current").and()
-                .authorizeRequests().anyRequest().authenticated();
     }
     
     @Override
@@ -49,7 +41,8 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter{
     
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/api/usuario", "/api/usuario/criar");
+        web.ignoring().antMatchers("/api/usuario", "/api/usuario/criar")
+                .antMatchers(HttpMethod.OPTIONS);
     }
 
     @Bean
@@ -63,4 +56,5 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter{
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
+    
 }

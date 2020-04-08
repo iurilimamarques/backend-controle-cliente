@@ -9,6 +9,7 @@ import com.controlecliente.project.models.Telefone;
 import com.controlecliente.project.models.Endereco;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -42,7 +43,7 @@ public class Cliente implements Serializable{
     @OneToMany(fetch = FetchType.LAZY)
     private List<Endereco> endereco;
     
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany /*(cascade = CascadeType.ALL)*/
     private List<Telefone> telefone;
     
     @ManyToOne
@@ -50,13 +51,15 @@ public class Cliente implements Serializable{
     private Usuario usuario;
     
 
-    public Cliente(String nome, String cpfCnpj, String status, List<Endereco> endereco, List<Telefone> telefone, Usuario usuario) {
+    public Cliente(String nome, String cpfCnpj, String status, Usuario usuario) {
         this.nome = nome;
         this.cpfCnpj = cpfCnpj;
         this.status = status;
-        this.endereco = endereco;
-        this.telefone = telefone;
         this.usuario = usuario;
+    }
+    
+    public Cliente() {
+        
     }
 
     public List<Telefone> getTelefone() {
