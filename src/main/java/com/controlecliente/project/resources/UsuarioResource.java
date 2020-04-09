@@ -89,7 +89,7 @@ public class UsuarioResource {
             body.add("username", usuario.getEmail());            
             body.add("password", usuario.getSenha());
             
-            String access_token_url = "http://localhost:8090/oauth/token";
+            String access_token_url = "https://backend-controle-cliente.herokuapp.com/oauth/token";
 
             HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(body, headers);
 
